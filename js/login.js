@@ -1,4 +1,4 @@
-const loginForm = document.querySelector('#login-form');
+const loginForm = document.querySelector("#login-form");
 loginForm.addEventListener("submit", handleLogin)
 
 async function handleLogin(e) {
@@ -19,11 +19,13 @@ async function handleLogin(e) {
         })
 
         if (response.ok) {
+            const data = await response.json();
+            sessionStorage.setItem("accessToken", data.data.accessToken); 
             location.href="../post/index.html";
         } else {
-            document.getElementById('error-msg').innerText = `Error: ${response.status}`;
+            document.getElementById("error-msg").innerText = `Error: ${response.status}`;
         }
     } catch (error) {
-        document.getElementById('error-msg').innerText = `Error: ${error.message}`;
+        document.getElementById("error-msg").innerText = `Error: ${error.message}`;
     }
 }

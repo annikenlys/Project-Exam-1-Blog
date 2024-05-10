@@ -1,12 +1,12 @@
-const registerForm = document.querySelector('#register-form');
+const registerForm = document.querySelector("#register-form");
 registerForm.addEventListener("submit", handleNewUser)
 
 async function handleNewUser(e) {
     e.preventDefault();
 
-    const name = document.querySelector('#name').value;
-    const email = document.querySelector('#email').value;
-    const password = document.querySelector('#password').value;
+    const name = document.querySelector("#name").value;
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector("#password").value;
     try {
         const response = await fetch("https://v2.api.noroff.dev/auth/register", {
             method: "POST",
@@ -21,11 +21,11 @@ async function handleNewUser(e) {
         })
 
         if (response.ok) {
-            location.href="/login";
+            location.href="../account/login.html";
         } else {
-            document.getElementById('error-msg').innerText = `Error: ${response.status}`;
+            document.getElementById("error-msg").innerText = `Error: ${response.status}`;
         }
     } catch (error) {
-        document.getElementById('error-msg').innerText = `Error: ${error.message}`;
+        document.getElementById("error-msg").innerText = `Error: ${error.message}`;
     }
 }
