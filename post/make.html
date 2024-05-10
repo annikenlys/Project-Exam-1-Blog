@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make blog post</title>
+    <script src="../js/make.js" defer></script>
+</head>
+<body>
+    <main>
+        <h1>Make blog post</h1>
+        <form id="new-post-form">
+            <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+            </div>
+            <div>
+                <label for="body">Text</label>
+                <input type="text" id="body" name="body">
+            </div>
+            <div>
+                <label for="tags">Tags</label>
+                <input type="text" id="tags" name="tags" placeholder="cat, awesome, july">
+            </div>
+            <div>
+                <label for="url">URL</label>
+                <input type="url" id="url" name="url">
+            </div>
+            <div>
+                <label for="alt">Media Description</label>
+                <input type="text" id="alt" name="alt">
+            </div>
+            <button id="submit-btn" type="submit">Post</button>
+        </form>
+        <p class="error-msg"></p>
+    </main>
+</body>
+</html>
