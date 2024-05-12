@@ -20,7 +20,8 @@ async function handleLogin(e) {
 
         if (response.ok) {
             const data = await response.json();
-            sessionStorage.setItem("accessToken", data.data.accessToken); 
+            sessionStorage.setItem("name", data.data.name);
+            sessionStorage.setItem("accessToken", data.data.accessToken);
             location.href="../post/index.html";
         } else {
             document.getElementById("error-msg").innerText = `Error: ${response.status}`;
