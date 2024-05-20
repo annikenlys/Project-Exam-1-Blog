@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
-    <script src="js/app.js" type="module" defer></script>
+    <script src="js/main.js" type="module" defer></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
@@ -17,7 +18,19 @@
         </nav>
     </header>
     <main>
-        <div id="carousel"></div>
+        <div id="carousel">
+            <div class="slideshow-container">
+                <div id="slides"></div>
+                <a class="prev">&#10094;</a>
+                <a class="next">&#10095;</a>
+            </div>
+
+            <div class="dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
         <div id="posts"></div>
     </main>
     <footer>
