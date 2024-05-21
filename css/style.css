@@ -1,3 +1,15 @@
+:root {
+    --vodka-soda-primary: #415E6B;
+    --new-car-smell-secondary: #A15929;
+    --double-stuf-oreo-tertiary: #6A3E1D;
+    --soy-candle-background: #F0E8E3;
+    --boca-ration: #C7D0D4;
+    --blue-skies: #9BB6BC;
+    --tuxedo-header-color: #252629;
+    --paragraph-color: #18181A;
+    --logo-color: #000;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -52,6 +64,7 @@ p {
     font-size: 5.61rem;
     text-transform: uppercase;
     letter-spacing: -0.219rem;
+    color: var(--logo-color);
 }
 
 /* Navigation */
