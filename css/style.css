@@ -78,13 +78,13 @@ p {
     grid-column: 2;
 }
 
-nav {
+.header-nav-links {
     grid-column: 3;
     display: flex;
     justify-content: flex-end;
 }
 
-ul {
+.header-nav-links ul {
     list-style: none;
     padding: 0;
     margin: 0;
