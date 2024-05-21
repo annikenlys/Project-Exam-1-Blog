@@ -25,7 +25,7 @@ export async function updatePosts(data) {
         const div = document.createElement('div');
         div.setAttribute('class', 'post');
         div.setAttribute('post-id', post.id);
-        div.innerHTML = `<h3>${post.title}</h3>`;
+        div.innerHTML = `<h4>${post.title}</h4>`;
         div.addEventListener('click', () => {
             redirectToPost(post.id);
         });
