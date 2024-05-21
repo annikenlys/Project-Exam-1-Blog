@@ -59,6 +59,15 @@ p {
     font-family: "Inter", sans-serif;
 }
 
+a {
+    color: var(--paragraph-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--double-stuf-oreo-tertiary);
+}
+
 .logo {
     font-family: "Abril Fatface", serif;
     font-size: 5.61rem;
