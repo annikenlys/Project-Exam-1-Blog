@@ -1,3 +1,4 @@
+
 :root {
     --vodka-soda-primary: #415E6B;
     --new-car-smell-secondary: #A15929;
@@ -80,12 +81,12 @@ p {
     text-align: center;
 }
 
-.header-nav-links {
+.logged-in-links {
     display: flex;
     justify-content: flex-end;
 }
 
-.header-nav-links ul {
+.logged-in-links ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -230,7 +231,7 @@ nav[logged-in="false"] {
         text-align: unset;
     }
 
-    .header-nav-links {
+    .logged-in-links {
         grid-column: 3;
         justify-content: flex-end;
     }
