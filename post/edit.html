@@ -16,17 +16,18 @@
         <div class="navbar">
             <span class="logo">4 the occasion</span>
             <nav class="header-nav-links">
-                <ul>
-                    <li><a href="../account/login.html">Sign out</a></li>
-                </ul>
+                <div class="breadcrumb-link">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                    </ul>
+                </div>
+                <div class="logged-in-links">
+                    <ul>
+                        <li><a href="../account/login.html">Sign out</a></li>
+                    </ul>
+                </div>
             </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="index.html">Back</a></li>
-            </ul>
-        </nav>
     </header>
     <main>
         <h1>Edit</h1>
@@ -41,7 +42,7 @@
             </div>
             <div>
                 <label for="tags">Tags</label>
-                <input type="text" id="tags" name="tags" placeholder="cat, awesome, july">
+                <input type="text" id="tags" name="tags" placeholder="e.g., travel, photography, summer">
             </div>
             <div>
                 <label for="url">URL</label>
@@ -51,7 +52,7 @@
                 <label for="alt">Media Description</label>
                 <input type="text" id="alt" name="alt">
             </div>
-            <button id="submit-btn" type="submit">Change</button>
+            <button id="submit-btn" type="submit">Update</button>
             <button id="delete-btn" type="button">Delete</button>
         </form>
     </main>
