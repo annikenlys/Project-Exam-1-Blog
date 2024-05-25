@@ -23,10 +23,13 @@ export async function updatePosts(data) {
     const posts = document.getElementById("posts");
     data.data.map((post, index) => {
         const div = document.createElement("div");
-        div.setAttribute("class", "post");
+        div.setAttribute("class", "post-card");
         div.setAttribute("post-id", post.id);
         div.innerHTML = `
+           <img class="post-card-img" src="${post.media.url}" alt="${post.media.alt}">
            <h4>${post.title}</h4>
+           <h5>Author: ${post.title}</h5>
+           <p class="small-paragraph">Last Updated: ${post.title}</p>
         `;
         div.addEventListener("click", () => {
             redirectToPost(post.id);
