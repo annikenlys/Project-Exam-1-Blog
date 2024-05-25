@@ -143,39 +143,6 @@ nav[logged-in="false"] {
     display: none;
 }
 
-/* Thumbnails Grid */
-#posts {
-    /*margin: 0 4.063rem;*/
-    margin: 0 auto;
-    padding: 4.063rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, auto);
-    grid-gap: 4.375rem;
-}
-
-.post-card {
-    /*width: 24.375rem;*/
-    /*height: 40.563rem;*/
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-}
-
-.post-card:hover {
-    cursor: pointer;
-}
-
-.post-card-img {
-    /*width: 24.375rem;*/
-    height: 32.875rem;
-    width: 100%;
-    /*height: auto;*/
-    object-fit: cover;
-}
-
 /* Slideshow container */
 .slideshow-container {
     max-width: 1000px;
@@ -269,6 +236,34 @@ nav[logged-in="false"] {
 @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
+}
+
+/* Thumbnails Grid */
+#posts {
+    margin: 0 auto;
+    padding: 2.563rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(12, auto);
+    grid-gap: 2.563rem;
+}
+
+.post-card {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.post-card:hover {
+    cursor: pointer;
+}
+
+.post-card-img {
+    height: 23.813rem;
+    width: 100%;
+    object-fit: cover;
 }
 
 /*Footer*/
@@ -381,6 +376,18 @@ footer .small-paragraph {
     .footer-logo-wrapper {
         bottom: -1.25rem;
     }
+
+    /* Thumbnails Grid */
+    #posts {
+        padding: 4.063rem;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, auto);
+        grid-gap: 3.375rem;
+    }
+
+    .post-card-img {
+        height: 28rem;
+    }
 }
 
 /*Desktops with small screens and above*/
@@ -418,5 +425,16 @@ footer .small-paragraph {
 
     .footer-logo-wrapper {
         bottom: -1.875rem;
+    }
+
+    /* Thumbnails Grid */
+    #posts {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, auto);
+        grid-gap: 4.375rem;
+    }
+
+    .post-card-img {
+        height: 32.875rem;
     }
 }
