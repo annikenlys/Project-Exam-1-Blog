@@ -261,7 +261,7 @@ nav[logged-in="false"] {
 }
 
 .post-card-img {
-    height: 23.813rem;
+    height: 100%;
     width: 100%;
     object-fit: cover;
 }
@@ -384,10 +384,6 @@ footer .small-paragraph {
         grid-template-rows: repeat(6, auto);
         grid-gap: 3.375rem;
     }
-
-    .post-card-img {
-        height: 28rem;
-    }
 }
 
 /*Desktops with small screens and above*/
@@ -432,9 +428,5 @@ footer .small-paragraph {
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(4, auto);
         grid-gap: 4.375rem;
-    }
-
-    .post-card-img {
-        height: 32.875rem;
     }
 }
