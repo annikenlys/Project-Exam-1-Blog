@@ -25,42 +25,48 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.219rem;
+    letter-spacing: -1px;
     font-weight: normal;
 }
 
 h1 {
-    font-size: 5.61rem;
+    /*font-size: 4.209rem;*/
+    color: var(--tuxedo-header-color);
+    font-size: clamp(2.369rem, 5vw, 4.209rem);
 }
 
 h2 {
-    font-size: 4.209rem;
+    /*font-size: 3.158rem;*/
+    color: var(--tuxedo-header-color);
+    font-size: clamp(1.777rem, 3vw, 3.158rem);
 }
 
 h3 {
-    font-size: 3.158rem;
+    /*font-size: 2.369rem;*/
+    color: var(--vodka-soda-primary);
+    font-size: clamp(1.333rem, 2vw, 2.369rem);
 }
 
 h4 {
-    font-size: 2.369rem;
+    color: var(--vodka-soda-primary);
+    font-size: 1.777rem;
 }
 
 h5 {
-    font-size: 1.777rem;
     color: var(--vodka-soda-primary);
-}
-
-h6 {
     font-size: 1.333rem;
 }
 
 p {
     line-height: 178.5%;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--paragraph-color);
 }
 
 .small-paragraph {
     font-size: 0.75rem;
     font-family: "Inter", sans-serif;
+    color: var(--paragraph-color);
 }
 
 ul {

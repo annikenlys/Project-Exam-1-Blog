@@ -22,3 +22,12 @@ export function redirectToMakePost() {
 export function redirectToEditPost(id) {
     location.href = `../post/edit.html?id=${id}`;
 }
+
+export function refactorDate(isoDateString)  {
+    const date = new Date(isoDateString);
+    const day = date.getDate();
+    const month = date.toLocaleString("en-US", { month: "short" });
+    const year = date.getFullYear();
+
+    return `${day} ${month} ${year}`;
+}

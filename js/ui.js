@@ -1,4 +1,4 @@
-import {redirectToEditPost, redirectToMakePost, redirectToPost} from "./utils.js";
+import {redirectToEditPost, redirectToMakePost, redirectToPost, refactorDate} from "./utils.js";
 import {deletePost} from "./api.js";
 
 export async function updateCarousel(data) {
@@ -27,9 +27,9 @@ export async function updatePosts(data) {
         div.setAttribute("post-id", post.id);
         div.innerHTML = `
            <img class="post-card-img" src="${post.media.url}" alt="${post.media.alt}">
-           <h4>${post.title}</h4>
-           <h5>Author: ${post.title}</h5>
-           <p class="small-paragraph">Last Updated: ${post.title}</p>
+           <h2>${post.title}</h2>
+           <h3>Author: ${post.author.name}</h3>
+            <p class="small-paragraph">Last Updated: ${refactorDate(post.updated)}</p>
         `;
         div.addEventListener("click", () => {
             redirectToPost(post.id);
@@ -40,13 +40,17 @@ export async function updatePosts(data) {
 
 export async function updatePost(data) {
     const post = data.data;
-    const postContainer = document.getElementById("postWrapper");
+    const postContainer = document.getElementById("post-wrapper");
     const div = document.createElement("div");
     div.setAttribute("class", "post");
     div.setAttribute("post-id", post.id);
     div.innerHTML = `
-        <h1>${post.title}</h1>
-        <img src="${post.media.url}" alt="${post.media.alt}">
+        <div class="post-banner">
+            <h1>${post.title}</h1>
+            <img src="${post.media.url}" alt="${post.media.alt}">
+            <h2>Author: ${post.author.name}</h2>
+            <p class="small-paragraph">Last Updated: ${refactorDate(post.updated)}</p>
+        </div>
         <p>${post.body}</p>
     `;
     postContainer.appendChild(div);
