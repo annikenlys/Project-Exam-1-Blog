@@ -28,7 +28,7 @@ export async function updatePosts(data) {
         div.innerHTML = `
            <img class="post-card-img" src="${post.media.url}" alt="${post.media.alt}">
            <h2>${post.title}</h2>
-           <h3>Author: ${post.author.name}</h3>
+           <h3>By:  ${post.author.name}</h3>
             <p class="small-paragraph">Last Updated: ${refactorDate(post.updated)}</p>
         `;
         div.addEventListener("click", () => {
@@ -46,12 +46,16 @@ export async function updatePost(data) {
     div.setAttribute("post-id", post.id);
     div.innerHTML = `
         <div class="post-banner">
-            <h1>${post.title}</h1>
             <img src="${post.media.url}" alt="${post.media.alt}">
-            <h2>Author: ${post.author.name}</h2>
-            <p class="small-paragraph">Last Updated: ${refactorDate(post.updated)}</p>
+            <div class="text-content">
+                <h1>${post.title}</h1>
+                <h2>By:  ${post.author.name}</h2>
+                <p class="small-paragraph">Last Updated: ${refactorDate(post.updated)}</p>
+            </div>
         </div>
-        <p>${post.body}</p>
+        <div class="paragraph-container">
+            <p>${post.body}</p>
+        </div>
     `;
     postContainer.appendChild(div);
 
