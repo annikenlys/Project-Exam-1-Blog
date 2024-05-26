@@ -31,7 +31,7 @@ async function initializeThumbnailGrid() {
 }
 
 async function initializePost() {
-    const post = document.getElementById("postWrapper");
+    const post = document.getElementById("post-wrapper");
     if (post) {
         const postId = getIdParamFromUrl();
         const postData = await fetchPost(postId);
