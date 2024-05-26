@@ -30,19 +30,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    /*font-size: 4.209rem;*/
     color: var(--tuxedo-header-color);
     font-size: clamp(2.369rem, 5vw, 4.209rem);
 }
 
 h2 {
-    /*font-size: 3.158rem;*/
-    color: var(--tuxedo-header-color);
+    /*color: var(--tuxedo-header-color);*/
     font-size: clamp(1.777rem, 3vw, 3.158rem);
 }
 
 h3 {
-    /*font-size: 2.369rem;*/
     color: var(--vodka-soda-primary);
     font-size: clamp(1.333rem, 2vw, 2.369rem);
 }
@@ -66,6 +63,7 @@ p {
 .small-paragraph {
     font-size: 0.75rem;
     font-family: "Inter", sans-serif;
+    text-transform: uppercase;
     color: var(--paragraph-color);
 }
 
@@ -303,13 +301,14 @@ footer .line {
     background-color: var(--paragraph-color);
 }
 
-.small-paragraph-wrapper {
+footer .small-paragraph-wrapper {
     margin-bottom: 1rem;
     margin-top: 0.188rem;
 }
 
 footer .small-paragraph {
     font-family: "Playfair Display", serif;
+    text-transform: lowercase;
 }
 
 .footer-logo-wrapper {
