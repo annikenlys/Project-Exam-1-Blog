@@ -31,3 +31,14 @@ export function refactorDate(isoDateString)  {
 
     return `${day} ${month} ${year}`;
 }
+
+export function updatePagination(totalPages, currentPage) {
+    const prevPageButton = document.getElementById("prev-page");
+    const nextPageButton = document.getElementById("next-page");
+    const pageInfo = document.getElementById("page-info");
+
+    prevPageButton.disabled = currentPage === 1;
+    nextPageButton.disabled = currentPage === totalPages;
+
+    pageInfo.innerText = `Page ${currentPage} of ${totalPages}`;
+}

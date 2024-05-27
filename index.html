@@ -19,8 +19,12 @@
             <nav class="header-nav-links">
                 <div class="logged-in-links">
                     <ul>
-                        <li><a href="account/login.html">Sign out</a></li>
-                        <li><a href="post/make.html">New post</a></li>
+                        <li><a id=auth-link href="./index.html"></a></li>
+                        <li>
+                            <div id="tools" logged-in="false">
+                                <span id="make-post">New post</span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -41,6 +45,12 @@
             </div>
         </div>
         <div id="posts"></div>
+        <div id="pagination">
+            <button id="prev-page" disabled>Previous</button>
+            <span id="page-info"></span>
+            <button id="next-page">Next</button>
+        </div>
+        <p id="error-msg"></p>
     </main>
     <footer>
         <div class="footer-breadcrumb-wrapper">

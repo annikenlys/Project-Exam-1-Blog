@@ -1,5 +1,4 @@
-import {redirectToEditPost, redirectToMakePost, redirectToPost, refactorDate} from "./utils.js";
-import {deletePost} from "./api.js";
+import {redirectToEditPost, redirectToPost, refactorDate, updatePagination} from "./utils.js";
 
 export async function updateCarousel(data) {
     const carousel = document.getElementById("slides");
@@ -21,15 +20,19 @@ export async function updateCarousel(data) {
 
 export async function updatePosts(data) {
     const posts = document.getElementById("posts");
-    data.data.map((post, index) => {
+    posts.innerHTML = "";
+
+    updatePagination(data.meta.pageCount, data.meta.currentPage);
+
+    data.data.forEach(post => {
         const div = document.createElement("div");
         div.setAttribute("class", "post-card");
         div.setAttribute("post-id", post.id);
         div.innerHTML = `
            <img class="post-card-img" src="${post.media.url}" alt="${post.media.alt}">
            <h2>${post.title}</h2>
-           <h3>By:  ${post.author.name}</h3>
-            <p class="small-paragraph">Last Updated: ${refactorDate(post.updated)}</p>
+           <h3>By: ${post.author.name}</h3>
+           <p class="small-paragraph">Last Updated: ${refactorDate(post.updated)}</p>
         `;
         div.addEventListener("click", () => {
             redirectToPost(post.id);
@@ -59,10 +62,7 @@ export async function updatePost(data) {
     `;
     postContainer.appendChild(div);
 
-    document.getElementById("make").addEventListener("click", () => {
-        redirectToMakePost();
-    });
-    document.getElementById("edit").addEventListener("click", () => {
+    document.getElementById("edit-post").addEventListener("click", () => {
         redirectToEditPost(post.id);
     });
 }
@@ -75,11 +75,3 @@ export async function updateEditPost(data) {
     document.getElementById("url").value = post.media.url;
     document.getElementById("alt").value = post.media.alt;
 }
-
-/*
-document.addEventListener("DOMContentLoaded", function() {
-    const accessToken = sessionStorage.getItem("accessToken");
-    if (accessToken) {
-        document.getElementById("tools").setAttribute("logged-in", "true");
-    }
-});*/

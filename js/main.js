@@ -1,7 +1,58 @@
-import {login, fetchCarouselData, fetchAllPosts, fetchPost, editPost, makePost, deletePost} from "./api.js";
+import {deletePost, editPost, fetchAllPosts, fetchCarouselData, fetchPost, login, makePost} from "./api.js";
 import {updateCarousel, updateEditPost, updatePost, updatePosts} from "./ui.js";
 import {initializeCarouselControls, showSlides, slideIndex} from "./carousel.js";
-import {getIdParamFromUrl} from "./utils.js";
+import {getIdParamFromUrl, redirectToMakePost} from "./utils.js";
+
+(function ensureIndexPath() {
+    const currentPath = window.location.pathname;
+    const indexPath = "/index.html";
+
+    if (currentPath === "/" || currentPath === "/index" || currentPath === "") {
+        window.location.replace(indexPath);
+    }
+})();
+
+let currentPageNumber = 1;
+
+function updateAuthLink(currentPage) {
+    const authLink = document.getElementById("auth-link");
+    if (!authLink) return;
+
+    const accessToken = sessionStorage.getItem("accessToken");
+
+    if (accessToken) {
+        authLink.textContent = "Sign Out";
+        if (currentPage === "/index.html") {
+            document.getElementById("tools").setAttribute("logged-in", "true");
+            document.getElementById("make-post").addEventListener("click", () => {
+                redirectToMakePost();
+            });
+        }
+        if (currentPage === "/post/index.html") {
+            document.getElementById("tools").setAttribute("logged-in", "true");
+        }
+        authLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            logOut(authLink, currentPage);
+        });
+    } else {
+        authLink.textContent = "Sign In";
+        authLink.href = "../account/login.html";
+    }
+}
+
+function logOut(authLink, currentPage) {
+    sessionStorage.removeItem("accessToken");
+    authLink.textContent = "Sign In";
+    if (currentPage === "/index.html") {
+        document.getElementById("tools").setAttribute("logged-in", "false");
+    }
+
+    if (currentPage === "/post/index.html") {
+        document.getElementById("tools").setAttribute("logged-in", "false");
+    }
+    location.href = "../index.html";
+}
 
 async function handleLogin() {
     const loginForm = document.getElementById("login-form");
@@ -22,10 +73,10 @@ async function initializeCarousel() {
     }
 }
 
-async function initializeThumbnailGrid() {
+async function initializeThumbnailGrid(page = currentPageNumber) {
     const posts = document.getElementById("posts");
     if (posts) {
-        const allPostsData = await fetchAllPosts();
+        const allPostsData = await fetchAllPosts(page);
         await updatePosts(allPostsData);
     }
 }
@@ -63,11 +114,53 @@ async function initializeEditPost() {
     }
 }
 
-window.onload = () => {
-    initializeCarousel().then(() =>  console.log('Carousel initialized'));
-    initializeThumbnailGrid().then(() => console.log('Thumbnail grid initialized'));
-    initializePost().then(() => console.log('Post initialized'));
-    initializeMakePost().then(() => console.log('Make post initialized'));
-    initializeEditPost().then(() => console.log('Edit post initialized'));
-    handleLogin().then(() => console.log('Login initialized'));
+function getCurrentPage() {
+    const currentUrl = window.location.href;
+    const url = new URL(currentUrl);
+    return url.pathname;
 }
+
+const pageInitializers = {
+    "/index.html": [initializeCarousel, initializeThumbnailGrid],
+    "/post/index.html": [initializePost],
+    "/post/make.html": [initializeMakePost],
+    "/post/edit.html": [initializeEditPost],
+    "/account/login.html": [handleLogin],
+}
+
+async function initializePage() {
+    const errorMsg = document.getElementById("error-msg");
+    errorMsg.innerText = "";
+    try {
+        const currentPage = getCurrentPage();
+        const initializers = pageInitializers[currentPage];
+
+        if (initializers) {
+            for (const initializer of initializers) {
+                await initializer();
+            }
+        }
+        updateAuthLink(currentPage);
+    } catch (error) {
+        errorMsg.innerText = `Initialization error: ${error.message}`;
+    }
+
+    const prevPageButton = document.getElementById("prev-page");
+    const nextPageButton = document.getElementById("next-page");
+
+    if (prevPageButton && nextPageButton) {
+        prevPageButton.addEventListener("click", async () => {
+            if (currentPageNumber > 1) {
+                currentPageNumber--;
+                await initializeThumbnailGrid(currentPageNumber);
+            }
+        });
+
+        nextPageButton.addEventListener("click", async () => {
+            currentPageNumber++;
+            await initializeThumbnailGrid(currentPageNumber);
+        });
+    }
+}
+
+window.onload = initializePage;

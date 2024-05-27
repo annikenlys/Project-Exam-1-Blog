@@ -3,8 +3,11 @@ import {getName} from "./utils.js";
 export async function login(e) {
     e.preventDefault();
 
-    const email = document.querySelector('#email').value;
-    const password = document.querySelector('#password').value;
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector("#password").value;
+
+    const errorMsg = document.getElementById("error-msg");
+    errorMsg.innerText = "";
     try {
         const response = await fetch("https://v2.api.noroff.dev/auth/login", {
             method: "POST",
@@ -22,16 +25,16 @@ export async function login(e) {
             sessionStorage.setItem("accessToken", data.data.accessToken);
             location.href = "../index.html";
         } else {
-            console.log(`Error: ${response.status}`);
-            //document.getElementById("error-msg").innerText = `Error: ${response.status}`;
+            errorMsg.innerText = `Error: ${response.status}`;
         }
     } catch (error) {
-        console.log(`Error: ${error.message}`);
-        //document.getElementById("error-msg").innerText = `Error: ${error.message}`;
+        errorMsg.innerText = `Error: ${error.message}`;
     }
 }
 
 export async function fetchCarouselData() {
+    const errorMsg = document.getElementById("error-msg");
+    errorMsg.innerText = "";
     try {
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}?sortOrder=desc&limit=3&page=1`, {
             method: "GET",
@@ -43,18 +46,18 @@ export async function fetchCarouselData() {
         if (response.ok) {
             return response.json();
         } else {
-            console.log(`Error: ${response.status}`);
-            //document.getElementById("error-msg").innerText = `Error: ${response.status}`;
+            errorMsg.innerText = `Error: ${response.status}`;
         }
     } catch (error) {
-        console.log(`Error: ${error.message}`);
-        //document.getElementById("error-msg").innerText = `Error: ${error.message}`;
+        errorMsg.innerText = `Error: ${error.message}`;
     }
 }
 
-export async function fetchAllPosts() {
+export async function fetchAllPosts(page) {
+    const errorMsg = document.getElementById("error-msg");
+    errorMsg.innerText = "";
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}?sortOrder=desc&limit=12&page=1`, {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}?sortOrder=desc&limit=12&page=${page}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -64,16 +67,16 @@ export async function fetchAllPosts() {
         if (response.ok) {
             return response.json();
         } else {
-            console.log(`Error: ${response.status}`);
-            //document.getElementById("error-msg").innerText = `Error: ${response.status}`;
+            errorMsg.innerText = `Error: ${response.status}`;
         }
     } catch (error) {
-        console.log(`Error: ${error.message}`);
-        //document.getElementById("error-msg").innerText = `Error: ${error.message}`;
+        errorMsg.innerText = `Error: ${error.message}`;
     }
 }
 
 export async function fetchPost(id) {
+    const errorMsg = document.getElementById("error-msg");
+    errorMsg.innerText = "";
     try {
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}/${id}`, {
             method: "GET",
@@ -85,12 +88,10 @@ export async function fetchPost(id) {
         if (response.ok) {
             return response.json();
         } else {
-            console.log(`Error: ${response.status}`);
-            //document.getElementById("error-msg").innerText = `Error: ${response.status}`;
+            errorMsg.innerText = `Error: ${response.status}`;
         }
     } catch (error) {
-        console.log(`Error: ${error.message}`);
-        //document.getElementById("error-msg").innerText = `Error: ${error.message}`;
+        errorMsg.innerText = `Error: ${error.message}`;
     }
 }
 
@@ -100,9 +101,25 @@ export async function makePost(e) {
     const title = document.querySelector("#title").value;
     const body = document.querySelector("#body").value;
     const tagsString = document.querySelector("#tags").value;
-    const tagsArray = tagsString.split(',').map(tag => tag.trim());
+    const tagsArray = tagsString.split("","").map(tag => tag.trim());
     const url = document.querySelector("#url").value;
     const alt = document.querySelector("#alt").value;
+    const errorMsg = document.getElementById("error-msg");
+    const infoMsg = document.getElementById("info-msg");
+
+    errorMsg.innerText = "";
+    infoMsg.innerText = "";
+
+    if (title === "" || body === "" || url === "" || alt === "") {
+        errorMsg.innerText = "Some required fields are missing";
+        infoMsg.innerText = "*Required fields: Title, Text, URL and Media Description";
+        return;
+    }
+
+    if (!url.includes("https://")) {
+        errorMsg.innerText = "Please enter a valid URL";
+        return;
+    }
 
     try {
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}`, {
@@ -132,9 +149,25 @@ export async function editPost(e, id) {
     const title = document.querySelector("#title").value;
     const body = document.querySelector("#body").value;
     const tagsString = document.querySelector("#tags").value;
-    const tagsArray = tagsString.split(',').map(tag => tag.trim());
+    const tagsArray = tagsString.split("","").map(tag => tag.trim());
     const url = document.querySelector("#url").value;
     const alt = document.querySelector("#alt").value;
+    const errorMsg = document.getElementById("error-msg");
+    const infoMsg = document.getElementById("info-msg");
+
+    errorMsg.innerText = "";
+    infoMsg.innerText = "";
+
+    if (title === "" || body === "" || url === "" || alt === "") {
+        errorMsg.innerText = "Some required fields are missing";
+        infoMsg.innerText = "*Required fields: Title, Text, URL and Media Description";
+        return;
+    }
+
+    if (!url.includes("https://")) {
+        errorMsg.innerText = "Please enter a valid URL";
+        return;
+    }
 
     try {
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}/${id}`, {
@@ -149,16 +182,16 @@ export async function editPost(e, id) {
         if (response.ok) {
             location.href = "../post/index.html?id=" + id;
         } else {
-            console.log(`Error: ${response.status}`);
-            //document.getElementById("error-msg").innerText = `Error: ${response.status}`;
+            document.getElementById("error-msg").innerText = `Error: ${response.status}`;
         }
     } catch (error) {
-        console.log(`Error: ${error.message}`);
-        //document.getElementById("error-msg").innerText = `Error: ${error.message}`;
+        document.getElementById("error-msg").innerText = `Error: ${error.message}`;
     }
 }
 
 export async function deletePost(id) {
+    const errorMsg = document.getElementById("error-msg");
+    errorMsg.innerText = "";
     try {
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}/${id}`, {
             method: "DELETE",
@@ -171,12 +204,10 @@ export async function deletePost(id) {
         if (response.ok) {
             location.href = "../index.html";
         } else {
-            console.log(`Error: ${response.status}`);
-            //document.getElementById("error-msg").innerText = `Error: ${response.status}`;
+            errorMsg.innerText = `Error: ${response.status}`;
         }
     } catch (error) {
-        console.log(`Error: ${error.message}`);
-        //document.getElementById("error-msg").innerText = `Error: ${error.message}`;
+        errorMsg.innerText = `Error: ${error.message}`;
     }
 }
 
