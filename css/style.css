@@ -147,6 +147,14 @@ nav[logged-in="false"] {
     display: none;
 }
 
+#make, #edit, #edit-post {
+    cursor: pointer;
+}
+
+#make:hover, #edit:hover, #edit-post:hover {
+    color: var(--double-stuf-oreo-tertiary);
+}
+
 /* Slideshow container */
 .slideshow-container {
     max-width: 1000px;
