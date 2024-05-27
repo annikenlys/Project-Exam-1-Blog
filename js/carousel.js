@@ -43,18 +43,18 @@ function resetTimer() {
 }
 
 export function initializeCarouselControls() {
-    const prevButton = document.querySelector('.prev');
-    const nextButton = document.querySelector('.next');
-    const dots = document.querySelectorAll('.dot');
+    const prevButton = document.querySelector(".prev");
+    const nextButton = document.querySelector(".next");
+    const dots = document.querySelectorAll(".dot");
 
     if (prevButton) {
-        prevButton.addEventListener('click', () => plusSlides(-1));
+        prevButton.addEventListener("click", () => plusSlides(-1));
     }
     if (nextButton) {
-        nextButton.addEventListener('click', () => plusSlides(1));
+        nextButton.addEventListener("click", () => plusSlides(1));
     }
 
     dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => currentSlide(index + 1));
+        dot.addEventListener("click", () => currentSlide(index + 1));
     });
 }

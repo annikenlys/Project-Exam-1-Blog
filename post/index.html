@@ -24,20 +24,20 @@
                 </div>
                 <div class="logged-in-links">
                     <ul>
-                        <li><a href="../account/login.html">Sign out</a></li>
-                        <li><span id="edit-post">Edit post</span></li>
+                        <li><a id=auth-link href="../index.html"></a></li>
+                        <li>
+                            <div id="tools" logged-in="false">
+                                <span id="edit-post">Edit post</span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
         </div>
     </header>
     <main>
-        <nav id="tools" logged-in="true">
-            <ul>
-                <li><span id="edit">Edit</span></li>
-            </ul>
-        </nav>
         <div id="post-wrapper"></div>
+        <p id="error-msg"></p>
     </main>
     <footer>
         <div class="footer-breadcrumb-wrapper">

@@ -143,15 +143,15 @@ li {
     gap: 0.375rem;
 }
 
-nav[logged-in="false"] {
+#tools[logged-in="false"] {
     display: none;
 }
 
-#make, #edit, #edit-post {
+#make-post, #edit-post {
     cursor: pointer;
 }
 
-#make:hover, #edit:hover, #edit-post:hover {
+#make-post:hover, #edit-post:hover {
     color: var(--double-stuf-oreo-tertiary);
 }
 
