@@ -358,6 +358,21 @@ button:hover {
     object-fit: cover;
 }
 
+/* Pagination */
+#pagination {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    margin: 2.563rem 0;
+}
+
+#pagination button {
+    margin: 0;
+    width: 6.25rem;
+}
+
 /*Footer*/
 footer {
     position: relative;
