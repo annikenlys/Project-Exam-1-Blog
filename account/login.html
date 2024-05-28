@@ -5,28 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="../js/main.js" type="module" defer></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/account-login.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+          rel="stylesheet">
 </head>
 <body>
     <main>
-        <section>
-            <h1>Log in</h1>
-            <form id="login-form">
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="text" id="email" name="email" required>
-                </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button id="submit-btn">Sign in</button>
-            </form>
-            <p id="error-msg"></p>
-        </section>
+        <div class="login-form-container">
+            <div class="login-banner-wrapper">
+                <h1>Welcome Back</h1>
+                <span class="logo header-logo">4 the occasion</span>
+            </div>
+            <div class="form-wrapper">
+                <h2>Log in</h2>
+                <form id="login-form">
+                    <div>
+                        <label for="email">Email address</label>
+                        <input type="text" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="password">Passwordk</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button id="submit-btn">Sign in</button>
+                </form>
+                <p id="error-msg"></p>
+            </div>
+        </div>
     </main>
 </body>
 </html>
