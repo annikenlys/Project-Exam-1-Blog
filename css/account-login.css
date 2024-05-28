@@ -1,0 +1,80 @@
+/* Typography */
+h1 {
+    color: var(--soy-candle-background);
+    letter-spacing: 2px;
+}
+
+.logo {
+    color: var(--soy-candle-background);
+    font-size: 2.369rem;
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+}
+
+.login-banner-wrapper {
+    background-image: url("../images/img-2.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    height: 100%;
+    width: 100%;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#login-form div {
+    width: 100%;
+}
+
+#login-form label {
+    text-transform: unset;
+    display: block;
+}
+
+#login-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--tuxedo-header-color);
+}
