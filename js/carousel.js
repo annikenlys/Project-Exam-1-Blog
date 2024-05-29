@@ -39,7 +39,7 @@ export function showSlides(n) {
 
 function resetTimer() {
     clearTimeout(timer);
-    timer = setTimeout(() => showSlides(slideIndex + 1), 2000); // Move to the next slide every 2 seconds
+    timer = setTimeout(() => showSlides(slideIndex + 1), 4000); // Move to the next slide every 2 seconds
 }
 
 export function initializeCarouselControls() {
