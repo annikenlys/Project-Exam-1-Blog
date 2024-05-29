@@ -9,8 +9,8 @@ export async function updateCarousel(data) {
         div.innerHTML =
             `<div class="numbertext">${index + 1} / 3</div>
             <img src="${post.media.url}" alt="${post.media.alt}">
-            <div class="text">${post.title}</div>
-            <button class="button" onclick="redirectToPost(${post.id})">Read more</button>`;
+            <h1 class="Carousel-header">${post.title}</h1>
+            `;
         div.addEventListener("click", () => {
             redirectToPost(post.id);
         });
