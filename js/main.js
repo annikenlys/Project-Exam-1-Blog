@@ -1,4 +1,13 @@
-import {deletePost, editPost, fetchAllPosts, fetchCarouselData, fetchPost, login, makePost} from "./api.js";
+import {
+    deletePost,
+    editPost,
+    fetchAllPosts,
+    fetchCarouselData,
+    fetchPost,
+    login,
+    makePost,
+    registerNewUser
+} from "./api.js";
 import {updateCarousel, updateEditPost, updatePost, updatePosts} from "./ui.js";
 import {initializeCarouselControls, showSlides, slideIndex} from "./carousel.js";
 import {getAccessToken, getIdParamFromUrl, getName, redirectToMakePost} from "./utils.js";
@@ -55,6 +64,15 @@ function logOut(authLink, currentPage) {
         document.getElementById("tools").setAttribute("logged-in", "false");
     }
     location.href = "../index.html";
+}
+
+async function handleRegisterNewUser() {
+    const registerForm = document.getElementById("register-form");
+    if (registerForm) {
+        registerForm.addEventListener("submit", (e) => {
+            registerNewUser(e);
+        });
+    }
 }
 
 async function handleLogin() {
@@ -136,6 +154,7 @@ const pageInitializers = {
     "/post/make.html": [initializeMakePost],
     "/post/edit.html": [initializeEditPost],
     "/account/login.html": [handleLogin],
+    "/account/register.html": [handleRegisterNewUser],
 }
 
 async function initializePage() {

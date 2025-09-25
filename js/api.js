@@ -1,5 +1,47 @@
 import {getName, getAccessToken} from "./utils.js";
 
+export async function registerNewUser(e) {
+    e.preventDefault();
+
+    const name = document.querySelector("#name").value;
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector("#password").value;
+
+    const errorMsg = document.getElementById("error-msg");
+    errorMsg.innerText = "";
+
+    const noroffPattern = /^[^@]+@stud.noroff.no$/;
+
+    if(name === "" || email === "" || password === "") {
+        errorMsg.innterText = "Some required fields are missing";
+        return;
+    } else if (!noroffPattern.test(email)) {
+        errorMsg.innterText = "Email must be a @stud.noroff.no adress";
+        return;
+    }
+    try {
+        const response = await fetch("https://v2.api.noroff.dev/auth/register", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            })
+        })
+
+        if (response.ok) {
+            location.href="../account/login.html";
+        } else {
+            document.getElementById("error-msg").innerText = `Error: ${response.status}`;
+        }
+    } catch (error) {
+        document.getElementById("error-msg").innerText = `Error: ${error.message}`;
+    }
+}
+
 export async function login(e) {
     e.preventDefault();
 
@@ -210,32 +252,3 @@ export async function deletePost(id) {
         errorMsg.innerText = `Error: ${error.message}`;
     }
 }
-
-/*async function registerNewUser(e) {
-    e.preventDefault();
-
-    const name = document.querySelector("#name").value;
-    const email = document.querySelector("#email").value;
-    const password = document.querySelector("#password").value;
-    try {
-        const response = await fetch("https://v2.api.noroff.dev/auth/register", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                password: password
-            })
-        })
-
-        if (response.ok) {
-            location.href="../account/login.html";
-        } else {
-            document.getElementById("error-msg").innerText = `Error: ${response.status}`;
-        }
-    } catch (error) {
-        document.getElementById("error-msg").innerText = `Error: ${error.message}`;
-    }
-}*/
