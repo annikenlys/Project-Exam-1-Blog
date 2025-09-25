@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>register new account</title>
-    <script src="../js/main.js" defer></script>
+    <script src="../js/main.js" type="module" defer></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/account.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,25 +14,30 @@
 </head>
 <body>
     <main>
-        <section>
-            <h1>Register new account</h1>
-            <form id="register-form">
-                <div>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="text" id="email" name="email" required>
-                </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button id="submit-btn">Register</button>
-            </form>
-            <p id="error-msg"></p>
-        </section>
+        <div class="form-container">
+            <div class="banner-wrapper">
+                <h1>Register New Account</h1>
+                <span class="logo header-logo">4 the occasion</span>
+            </div>
+            <div class="form-wrapper">
+                <form id="register-form">
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button id="submit-btn">Register</button>
+                </form>
+                <p id="error-msg"></p>
+            </div>
+        </div>
     </main>
 </body>
 </html>
