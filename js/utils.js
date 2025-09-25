@@ -1,4 +1,20 @@
-export const getName = "annlys";
+export function getName() {
+    try {
+        const user = JSON.parse(sessionStorage.getItem("user"));
+        return user?.name ?? "Anniken" ;
+    } catch {
+        return "Anniken";
+    }
+}
+
+export function getAccessToken() {
+    try {
+        const user = JSON.parse(sessionStorage.getItem("user"));
+        return user?.accessToken || null;
+    } catch {
+        return null;
+    }
+}
 
 export function getIdParamFromUrl() {
     const currentUrl = window.location.href;

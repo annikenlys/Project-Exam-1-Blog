@@ -1,4 +1,4 @@
-import {getName} from "./utils.js";
+import {getName, getAccessToken} from "./utils.js";
 
 export async function login(e) {
     e.preventDefault();
@@ -22,7 +22,7 @@ export async function login(e) {
 
         if (response.ok) {
             const data = await response.json();
-            sessionStorage.setItem("accessToken", data.data.accessToken);
+            sessionStorage.setItem("user", JSON.stringify(data.data));
             location.href = "../index.html";
         } else {
             errorMsg.innerText = `Error: ${response.status}`;
@@ -36,7 +36,7 @@ export async function fetchCarouselData() {
     const errorMsg = document.getElementById("error-msg");
     errorMsg.innerText = "";
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}?sortOrder=desc&limit=3&page=1`, {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName()}?sortOrder=desc&limit=3&page=1`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -57,7 +57,7 @@ export async function fetchAllPosts(page) {
     const errorMsg = document.getElementById("error-msg");
     errorMsg.innerText = "";
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}?sortOrder=desc&limit=12&page=${page}`, {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName()}?sortOrder=desc&limit=12&page=${page}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -78,7 +78,7 @@ export async function fetchPost(id) {
     const errorMsg = document.getElementById("error-msg");
     errorMsg.innerText = "";
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}/${id}`, {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName()}/${id}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -122,11 +122,11 @@ export async function makePost(e) {
     }
 
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}`, {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName()}`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": `Bearer ${sessionStorage.getItem("accessToken")}`,
+                "Authorization": `Bearer ${getAccessToken()}`,
             },
             body: JSON.stringify({ title, body, tags: tagsArray, media: { url, alt } })
         });
@@ -170,11 +170,11 @@ export async function editPost(e, id) {
     }
 
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}/${id}`, {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName()}/${id}`, {
             method: "PUT",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": `Bearer ${sessionStorage.getItem("accessToken")}`
+                "Authorization": `Bearer ${getAccessToken()}`
             },
             body: JSON.stringify({ title, body, tags: tagsArray, media: { url, alt } })
         })
@@ -193,11 +193,11 @@ export async function deletePost(id) {
     const errorMsg = document.getElementById("error-msg");
     errorMsg.innerText = "";
     try {
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName}/${id}`, {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${getName()}/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                "Authorization": `Bearer ${sessionStorage.getItem("accessToken")}`
+                "Authorization": `Bearer ${getAccessToken()}`
             }
         })
 
