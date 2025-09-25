@@ -67,17 +67,24 @@ async function initializeCarousel() {
     const carousel = document.getElementById("carousel");
     if (carousel) {
         const carouselData = await fetchCarouselData();
-        await updateCarousel(carouselData);
-        showSlides(slideIndex);
-        initializeCarouselControls();
+        if (carouselData.data.length > 0) {
+            carousel.setAttribute("show", "true");
+            await updateCarousel(carouselData);
+            showSlides(slideIndex);
+            initializeCarouselControls();
+        }
     }
 }
 
 async function initializeThumbnailGrid(page = currentPageNumber) {
     const posts = document.getElementById("posts");
+    const pagination = document.getElementById("pagination");
     if (posts) {
         const allPostsData = await fetchAllPosts(page);
-        await updatePosts(allPostsData);
+        if (allPostsData.data.length > 0) {
+            pagination.setAttribute("show", "true");
+            await updatePosts(allPostsData);
+        }
     }
 }
 
