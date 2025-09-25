@@ -3,6 +3,10 @@
     margin: 2.563rem;
 }
 
+#carousel[show="false"] {
+    display: none;
+}
+
 .slideshow-container {
     width: 100%;
     position: relative;
@@ -123,6 +127,10 @@
     justify-content: center;
     gap: .5rem;
     margin: 2.563rem 0;
+}
+
+#pagination[show="false"] {
+    display: none;
 }
 
 #pagination button {
