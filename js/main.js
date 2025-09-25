@@ -1,7 +1,7 @@
 import {deletePost, editPost, fetchAllPosts, fetchCarouselData, fetchPost, login, makePost} from "./api.js";
 import {updateCarousel, updateEditPost, updatePost, updatePosts} from "./ui.js";
 import {initializeCarouselControls, showSlides, slideIndex} from "./carousel.js";
-import {getIdParamFromUrl, redirectToMakePost} from "./utils.js";
+import {getAccessToken, getIdParamFromUrl, getName, redirectToMakePost} from "./utils.js";
 
 (function ensureIndexPath() {
     const currentPath = window.location.pathname;
@@ -15,12 +15,15 @@ import {getIdParamFromUrl, redirectToMakePost} from "./utils.js";
 let currentPageNumber = 1;
 
 function updateAuthLink(currentPage) {
+    const username = document.getElementById("username");
     const authLink = document.getElementById("auth-link");
-    if (!authLink) return;
+    if (!username || !authLink) return;
 
-    const accessToken = sessionStorage.getItem("accessToken");
+    const name = getName();
+    const accessToken = getAccessToken();
 
-    if (accessToken) {
+    if (name && accessToken) {
+        username.innerText = `Hi, ${name}`;
         authLink.textContent = "Sign Out";
         if (currentPage === "/index.html") {
             document.getElementById("tools").setAttribute("logged-in", "true");
@@ -42,7 +45,7 @@ function updateAuthLink(currentPage) {
 }
 
 function logOut(authLink, currentPage) {
-    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("user");
     authLink.textContent = "Sign In";
     if (currentPage === "/index.html") {
         document.getElementById("tools").setAttribute("logged-in", "false");
