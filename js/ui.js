@@ -2,12 +2,13 @@ import {redirectToEditPost, redirectToPost, refactorDate, updatePagination} from
 
 export async function updateCarousel(data) {
     const carousel = document.getElementById("slides");
+    const dataLength = data.data.length > 3 ? 3 : data.data.length;
     data.data.map((post, index) => {
         const div = document.createElement("div");
         div.setAttribute("class", "mySlides fade");
         div.setAttribute("post-id", post.id);
         div.innerHTML =
-            `<div class="numbertext">${index + 1} / 3</div>
+            `<div class="numbertext">${index + 1} / ${dataLength}</div>
             <img src="${post.media.url}" alt="${post.media.alt}">
             <h1 class="Carousel-header">${post.title}</h1>
             `;

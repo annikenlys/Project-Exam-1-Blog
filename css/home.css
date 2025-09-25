@@ -97,7 +97,6 @@
     padding: 2.563rem;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(12, auto);
     grid-gap: 2.563rem;
 }
 
@@ -149,7 +148,6 @@
     #posts {
         padding: 4.063rem;
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(6, auto);
         grid-gap: 3.375rem;
     }
 }
@@ -159,7 +157,6 @@
     /* Thumbnails Grid */
     #posts {
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(4, auto);
         grid-gap: 4.375rem;
     }
 }
