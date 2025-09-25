@@ -13,10 +13,10 @@ export async function registerNewUser(e) {
     const noroffPattern = /^[^@]+@stud.noroff.no$/;
 
     if(name === "" || email === "" || password === "") {
-        errorMsg.innterText = "Some required fields are missing";
+        errorMsg.innerText = "Some required fields are missing";
         return;
     } else if (!noroffPattern.test(email)) {
-        errorMsg.innterText = "Email must be a @stud.noroff.no adress";
+        errorMsg.innerText = "Email must be a @stud.noroff.no adress";
         return;
     }
     try {
